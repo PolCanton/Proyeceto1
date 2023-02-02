@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Proyecto1</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titulo_proyecto">Proyecto</string>
+    <string name="Iniciar_Session">Proyecto</string>
+    <string name="email">Correo electronico</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar Session</string>
+    <string name="text_signup">No tienes cuenta?</string>
+    <string name="buscar">Buscar</string>
+    <string name="alertas">Alertas</string>
+    <string name="publicar">Publicar</string>
+    <string name="mensajes">Mensajes</string>
+    <string name="cuenta">Cuenta</string>
+
+
+</resources>

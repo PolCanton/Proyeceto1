@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_buscar"
+        android:icon="@drawable/ic_buscar"
+        android:title="@string/buscar"
+        />
+    <item
+        android:id="@+id/navigation_alertas"
+        android:icon="@drawable/ic_alerta"
+        android:title="@string/alertas"
+        />
+    <item
+        android:id="@+id/navigation_publicar"
+        android:icon="@drawable/ic_publicar"
+        android:title="@string/publicar"
+        />
+    <item
+        android:id="@+id/navigation_mensajes"
+        android:icon="@drawable/ic_mensajes"
+        android:title="@string/mensajes"
+        />
+    <item
+        android:id="@+id/navigation_cuenta"
+        android:icon="@drawable/ic_cuenta"
+        android:title="@string/cuenta"
+        />
+</menu>
+
+
