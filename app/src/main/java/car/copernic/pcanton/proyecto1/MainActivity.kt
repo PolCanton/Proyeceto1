@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
-//        val fragmentbuscar = fragment_buscar.newInstance()
-//        openFragment(fragmentbuscar)
+        val fragmentbuscar = fragment_buscar.newInstance()
+        openFragment(fragmentbuscar)
         bottomNavigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener)
 
     }
@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.frame_layout_main, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+
     }
 
 }

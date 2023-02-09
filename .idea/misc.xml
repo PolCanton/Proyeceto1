@@ -9,19 +9,21 @@
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.123" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/drawable/roundedbutton.xml" value="0.122" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/activity_iniciar_session.xml" value="0.264" />
-        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/activity_registrar.xml" value="0.2" />
-        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_alerta.xml" value="0.264" />
+        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_alerta.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_asdas.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_blank.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_blank2.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_buscar.xml" value="0.264" />
-        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_cuenta.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_cuenta.xml" value="0.264" />
+        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_info_cuenta.xml" value="0.14978292329956586" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_mensajes.xml" value="0.11197916666666667" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_menu2.xml" value="0.2" />
+        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_mis__anuncios.xml" value="0.176" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_mostrar_anuncio.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_publicar.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_publicar.xml" value="0.2" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.253125" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/slide_screen.xml" value="0.2520833333333333" />
         <entry key="..\:/Users/pcant/OneDrive/Escritorio/segundo2/Proyecto1/app/src/main/res/layout/view_anuncios.xml" value="0.536" />

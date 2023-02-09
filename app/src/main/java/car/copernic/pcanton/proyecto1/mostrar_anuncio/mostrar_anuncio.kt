@@ -11,11 +11,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import car.copernic.pcanton.proyecto1.R
+import car.copernic.pcanton.proyecto1.alertas.fragment_alerta
+import car.copernic.pcanton.proyecto1.databinding.FragmentMensajesBinding
 import car.copernic.pcanton.proyecto1.databinding.FragmentMostrarAnuncioBinding
 
 
 class mostrar_anuncio : Fragment() {
     private lateinit var binding: FragmentMostrarAnuncioBinding
+    private var inputText: String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,13 +26,12 @@ class mostrar_anuncio : Fragment() {
     ): View{
         binding = FragmentMostrarAnuncioBinding.inflate(inflater, container, false)
 
-        val intent:Intent=Intent()
-        val name: String? =intent.getStringExtra("name")
-        binding.nombreAnuncio.setText(name)
+
 
         return binding.root
-
-
+    }
+    companion object {
+        fun newInstance(): mostrar_anuncio = mostrar_anuncio()
     }
 }
 

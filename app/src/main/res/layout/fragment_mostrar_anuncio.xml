@@ -5,8 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mostrar_anuncio.mostrar_anuncio"
-    android:id="@+id/main_container"
     >
+    <FrameLayout
+        android:id="@+id/frame_layout_mostrar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
 
     <TextView
@@ -16,5 +20,6 @@
         android:text="TextView"
         tools:layout_editor_absoluteX="129dp"
         tools:layout_editor_absoluteY="209dp" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

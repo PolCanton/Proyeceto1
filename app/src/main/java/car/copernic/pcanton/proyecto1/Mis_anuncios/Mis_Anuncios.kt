@@ -1,16 +1,19 @@
-package car.copernic.pcanton.proyecto1.buscar
+package car.copernic.pcanton.proyecto1.Mis_anuncios
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio
+import car.copernic.pcanton.proyecto1.R
 import car.copernic.pcanton.proyecto1.adapter.Anuncio_Adapter
-import car.copernic.pcanton.proyecto1.databinding.FragmentBuscarBinding
+import car.copernic.pcanton.proyecto1.databinding.FragmentMisAnunciosBinding
+import car.copernic.pcanton.proyecto1.databinding.FragmentPublicarBinding
+import car.copernic.pcanton.proyecto1.mostrar_anuncio.mostrar_anuncio
+import car.copernic.pcanton.proyecto1.publicar.fragment_publicar
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,9 +21,8 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 
 
-class fragment_buscar : Fragment() {
-
-    private lateinit var binding: FragmentBuscarBinding
+class Mis_Anuncios : Fragment() {
+    private lateinit var binding: FragmentMisAnunciosBinding
     lateinit var mAdapter: Anuncio_Adapter
     lateinit var mRecycler: RecyclerView
     lateinit var mFirestore: FirebaseFirestore
@@ -30,11 +32,11 @@ class fragment_buscar : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
-        binding = FragmentBuscarBinding.inflate(inflater, container, false)
+    ): View {
+        binding = FragmentMisAnunciosBinding.inflate(inflater, container, false)
         get_email()
         mFirestore = FirebaseFirestore.getInstance()
-        mRecycler = binding.recyclerViewAnuncios
+        mRecycler = binding.recyclerViewMisanuncios
         mRecycler.layoutManager = GridLayoutManager(context,1)
         query = mFirestore.collection("anuncios")
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
@@ -46,29 +48,16 @@ class fragment_buscar : Fragment() {
         return binding.root
     }
 
-
-    private  fun get_email() {
+       private  fun get_email() {
         val user = Firebase.auth.currentUser
-        val let = user?.let {
+           val let = user?.let {
 
-            email = it.email.toString()
+               email = it.email.toString()
 
-        }
-    }
-
+           }
+       }
     companion object {
-        fun newInstance(): fragment_buscar = fragment_buscar()
+        fun newInstance(): Mis_Anuncios = Mis_Anuncios()
     }
-
-    override fun onStop() {
-        super.onStop()
-        mAdapter.startListening()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mAdapter.startListening()
-    }
-
 
 }

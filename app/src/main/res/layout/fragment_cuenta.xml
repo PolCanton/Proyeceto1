@@ -1,25 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".cuenta.fragment_cuenta"
-    android:background="@color/red"
+    android:id="@+id/frame_layout_alerta"
+
     >
-    <FrameLayout
-        android:id="@+id/frame_layout_alerta"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment cuenta" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/TV_nombre_usuario"
+            android:layout_width="222dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="104dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_cuenta"
+            android:layout_width="400dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="180dp"
+            android:text="Informacion cuenta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_MisAnuncios"
+            android:layout_width="400dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:text="Mis Anuncios"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_cuenta" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
 
 

@@ -14,10 +14,15 @@ import car.copernic.pcanton.proyecto1.databinding.FragmentMensajesBinding
 class fragment_mensajes : Fragment() {
     private lateinit var binding: FragmentMensajesBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentMensajesBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View{
+        binding = FragmentMensajesBinding.inflate(inflater, container, false)
 
+
+
+        return binding.root
     }
     companion object {
         fun newInstance(): fragment_mensajes = fragment_mensajes()
