@@ -44,9 +44,6 @@ public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_A
         holder.cardView.setOnClickListener(view -> {
             Toast.makeText(view.getContext(), "Esto es "+model.getNombre(), Toast.LENGTH_SHORT).show();
             Fragment fragment = new mostrar_anuncio();
-//            Bundle bundle2 = new Bundle();
-//            bundle2.putString("nombre", model.getNombre());
-      //      fragment.setArguments(bundle2);
             AppCompatActivity activity = (AppCompatActivity) view.getContext();
             activity.getSupportFragmentManager().beginTransaction().
                     replace(R.id.frame_layout_buscar, fragment).addToBackStack(null).commit();

@@ -34,11 +34,11 @@ class Mis_Anuncios : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMisAnunciosBinding.inflate(inflater, container, false)
-        get_email()
+        var correo = get_email()
         mFirestore = FirebaseFirestore.getInstance()
         mRecycler = binding.recyclerViewMisanuncios
         mRecycler.layoutManager = GridLayoutManager(context,1)
-        query = mFirestore.collection("anuncios")
+        query = mFirestore.collection("anuncios").whereEqualTo("vendedor",correo  )
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
             FirestoreRecyclerOptions.Builder<Anuncio>().setQuery(query,
                 Anuncio::class.java).build()
@@ -48,16 +48,24 @@ class Mis_Anuncios : Fragment() {
         return binding.root
     }
 
-       private  fun get_email() {
+    private  fun get_email(): String {
         val user = Firebase.auth.currentUser
-           val let = user?.let {
-
-               email = it.email.toString()
-
-           }
-       }
+        var email=""
+        user?.let {
+            email = it.email.toString()
+        }
+        return email
+    }
     companion object {
         fun newInstance(): Mis_Anuncios = Mis_Anuncios()
     }
+    override fun onStop() {
+        super.onStop()
+        mAdapter.startListening()
+    }
 
+    override fun onStart() {
+        super.onStart()
+        mAdapter.startListening()
+    }
 }
