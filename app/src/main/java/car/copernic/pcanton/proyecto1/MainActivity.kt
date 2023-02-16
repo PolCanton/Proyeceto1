@@ -46,11 +46,7 @@ class MainActivity : AppCompatActivity() {
                 openFragment(fragmentCuenta)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_mensajes -> {
-                val fragmentMensajes = fragment_mensajes.newInstance()
-                openFragment(fragmentMensajes)
-                return@OnNavigationItemSelectedListener true
-            }
+
             R.id.navigation_publicar -> {
                 val fragmentPublicar = fragment_publicar.newInstance()
                 openFragment(fragmentPublicar)

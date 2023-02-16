@@ -23,12 +23,13 @@ public class Cuenta_Adapter extends FirestoreRecyclerAdapter<cuenta, Cuenta_Adap
         super(options);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull Cuenta_Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull cuenta model) {
-        holder.correo.setText(model.getCorreo());
-        holder.nombre.setText(model.getNombre());
-        holder.telefono.setText(model.getTelefono());
-        holder.direccion.setText(model.getDireccion());
+        holder.correo.setText("COrreo electronico:"+model.getCorreo());
+        holder.nombre.setText("Nombre: "+model.getNombre());
+        holder.telefono.setText("Numero telefono: "+model.getTelefono());
+        holder.direccion.setText("Direccion: "+model.getDireccion());
     }
 
     @NonNull

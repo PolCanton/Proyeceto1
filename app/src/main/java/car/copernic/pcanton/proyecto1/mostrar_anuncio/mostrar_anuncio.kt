@@ -26,7 +26,8 @@ class mostrar_anuncio : Fragment() {
     ): View{
         binding = FragmentMostrarAnuncioBinding.inflate(inflater, container, false)
 
-
+        inputText = arguments?.getString("nombre")
+        binding.nombreAnuncio.setText(inputText)
 
         return binding.root
     }

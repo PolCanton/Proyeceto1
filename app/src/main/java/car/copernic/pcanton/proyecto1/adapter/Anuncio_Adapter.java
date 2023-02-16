@@ -1,12 +1,12 @@
 package car.copernic.pcanton.proyecto1.adapter;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,10 +40,11 @@ public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_A
                 .placeholder(com.firebase.ui.firestore.R.drawable.common_google_signin_btn_icon_dark)
                 .error(com.firebase.ui.firestore.R.drawable.common_google_signin_btn_icon_disabled)
                 .into(holder.foto);
-
         holder.cardView.setOnClickListener(view -> {
-            Toast.makeText(view.getContext(), "Esto es "+model.getNombre(), Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
             Fragment fragment = new mostrar_anuncio();
+            fragment.setArguments(bundle);
+            bundle.putString("nombre", model.getNombre());
             AppCompatActivity activity = (AppCompatActivity) view.getContext();
             activity.getSupportFragmentManager().beginTransaction().
                     replace(R.id.frame_layout_main, fragment).addToBackStack(null).commit();
@@ -71,7 +72,6 @@ public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_A
             precio=itemView.findViewById(R.id.textView_precio);
             ubicacion=itemView.findViewById(R.id.textView_ubicacion);
             cardView=itemView.findViewById(R.id.card_view_anuncios);
-
         }
     }
 

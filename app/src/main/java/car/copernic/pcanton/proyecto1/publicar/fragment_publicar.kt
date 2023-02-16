@@ -26,11 +26,12 @@ import java.util.*
 class fragment_publicar : Fragment() {
     private lateinit var binding: FragmentPublicarBinding
     lateinit var mFirestore: FirebaseFirestore
-    private  var filePath: Uri? = null
-    var storageReference: StorageReference? = null
-    var storage: FirebaseStorage? = null
+    lateinit var filePath: Uri
+    lateinit  var storageReference: StorageReference
+    lateinit var storage: FirebaseStorage
     private val PICK_IMAGE_REQUEST = 71
     lateinit  var  nombre:String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -53,7 +54,7 @@ class fragment_publicar : Fragment() {
     }
 
     private fun insert_basedatos(uri: String) {
-         nombre = binding.exnombre.text.toString()
+        nombre = binding.exnombre.text.toString()
         val ubicacion=binding.exnombreubicacion.text.toString()
         val descipcion=binding.exnombredescripcion.text.toString()
         val precio=binding.exprecio.text.toString()
@@ -96,7 +97,7 @@ class fragment_publicar : Fragment() {
             })?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUri = task.result
-                //   addUploadRecordToDb(downloadUri.toString())
+                    //   addUploadRecordToDb(downloadUri.toString())
                     insert_basedatos(downloadUri.toString())
                 } else {
                     // Handle failures
@@ -121,7 +122,7 @@ class fragment_publicar : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
-            filePath = data.data
+            filePath = data.data!!
             try {
                 val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, filePath)
                 binding.imgView.setImageBitmap(bitmap)

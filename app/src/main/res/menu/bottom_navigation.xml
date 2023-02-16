@@ -19,13 +19,7 @@
         android:enabled="true"
 
         />
-    <item
-        android:id="@+id/navigation_mensajes"
-        android:icon="@drawable/ic_mensajes"
-        android:title="@string/mensajes"
-        android:enabled="true"
-
-        />
+ 
     <item
         android:id="@+id/navigation_cuenta"
         android:icon="@drawable/ic_cuenta"
