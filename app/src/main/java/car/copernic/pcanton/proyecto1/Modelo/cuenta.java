@@ -3,6 +3,7 @@ package car.copernic.pcanton.proyecto1.Modelo;
 public class cuenta {
 
     String nombre,telefono,direccion,correo;
+    public cuenta(){}
 
     public cuenta(String nombre, String telefono, String direccion, String correo) {
         this.nombre = nombre;

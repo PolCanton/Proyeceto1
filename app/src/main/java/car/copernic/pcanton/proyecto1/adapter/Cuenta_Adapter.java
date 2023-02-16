@@ -25,16 +25,16 @@ public class Cuenta_Adapter extends FirestoreRecyclerAdapter<cuenta, Cuenta_Adap
 
     @Override
     protected void onBindViewHolder(@NonNull Cuenta_Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull cuenta model) {
+        holder.correo.setText(model.getCorreo());
         holder.nombre.setText(model.getNombre());
         holder.telefono.setText(model.getTelefono());
         holder.direccion.setText(model.getDireccion());
-        holder.correo.setText(model.getCorreo());
     }
 
     @NonNull
     @Override
     public Cuenta_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_info_cuenta,parent,false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.view_info_cuenta,parent,false);
         return new Cuenta_Adapter.ViewHolder(v);
     }
 

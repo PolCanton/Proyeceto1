@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio
 import car.copernic.pcanton.proyecto1.Modelo.cuenta
 import car.copernic.pcanton.proyecto1.R
@@ -18,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 
 
@@ -26,6 +28,8 @@ class Info_cuenta : Fragment() {
     private lateinit var auth: FirebaseAuth
     lateinit var mFirestore: FirebaseFirestore
     lateinit var cAdapter: Cuenta_Adapter
+    lateinit var mRecycler: RecyclerView
+    lateinit var query: Query
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,14 +38,16 @@ class Info_cuenta : Fragment() {
         binding = FragmentInfoCuentaBinding.inflate(inflater, container, false)
         auth = Firebase.auth
         var correo = get_email()
-        mFirestore = FirebaseFirestore.getInstance()
 
-        val citiesRef = mFirestore.collection("user")
-        val query = citiesRef.whereEqualTo("correo", correo)
+        mFirestore = FirebaseFirestore.getInstance()
+        mRecycler = binding.recyclerViewInfoCuenta
+        mRecycler.layoutManager = GridLayoutManager(context,1)
+        query = mFirestore.collection("user").whereEqualTo("correo",correo  )
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<cuenta> =
             FirestoreRecyclerOptions.Builder<cuenta>().setQuery(query,
                 cuenta::class.java).build()
-        cAdapter = Cuenta_Adapter(firestoreRecyclerOptions)
+        cAdapter =Cuenta_Adapter(firestoreRecyclerOptions)
+        mRecycler.adapter = cAdapter
         return binding.root
     }
 
@@ -57,17 +63,6 @@ class Info_cuenta : Fragment() {
         return email
     }
 
-    private fun a(){
-        val user = Firebase.auth.currentUser
-        user?.let {
-            val name = it.displayName
-            val email = it.email
-            val photoUrl = it.photoUrl
-            val emailVerified = it.isEmailVerified
-
-            val uid = it.uid
-        }
-    }
     override fun onStop() {
         super.onStop()
         cAdapter.startListening()
