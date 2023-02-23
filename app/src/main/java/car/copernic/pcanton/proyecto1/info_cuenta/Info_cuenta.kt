@@ -1,54 +1,85 @@
 package car.copernic.pcanton.proyecto1.info_cuenta
 
+import android.content.ContentValues
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import car.copernic.pcanton.proyecto1.Modelo.Anuncio
-import car.copernic.pcanton.proyecto1.Modelo.cuenta
-import car.copernic.pcanton.proyecto1.R
-import car.copernic.pcanton.proyecto1.adapter.Anuncio_Adapter
-import car.copernic.pcanton.proyecto1.adapter.Cuenta_Adapter
-import car.copernic.pcanton.proyecto1.cuenta.fragment_cuenta
-import car.copernic.pcanton.proyecto1.databinding.FragmentCuentaBinding
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import car.copernic.pcanton.proyecto1.databinding.FragmentInfoCuentaBinding
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
+import com.google.firestore.v1.WriteResult
+import java.util.*
 
 
 class Info_cuenta : Fragment() {
     private lateinit var binding: FragmentInfoCuentaBinding
-    private lateinit var auth: FirebaseAuth
     lateinit var mFirestore: FirebaseFirestore
-    lateinit var cAdapter: Cuenta_Adapter
-    lateinit var mRecycler: RecyclerView
-    lateinit var query: Query
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentInfoCuentaBinding.inflate(inflater, container, false)
-        auth = Firebase.auth
-        var correo = get_email()
 
         mFirestore = FirebaseFirestore.getInstance()
-        mRecycler = binding.recyclerViewInfoCuenta
-        mRecycler.layoutManager = GridLayoutManager(context,1)
-        query = mFirestore.collection("user").whereEqualTo("correo",correo  )
-        val firestoreRecyclerOptions: FirestoreRecyclerOptions<cuenta> =
-            FirestoreRecyclerOptions.Builder<cuenta>().setQuery(query,
-                cuenta::class.java).build()
-        cAdapter =Cuenta_Adapter(firestoreRecyclerOptions)
-        mRecycler.adapter = cAdapter
+        cargar_datos()
+        binding.buttoneditar.setOnClickListener{editar_Datos()}
+        binding.buttonaceptar.setOnClickListener{actualizar_datos()}
         return binding.root
+    }
+
+    private fun actualizar_datos() {
+        val nombre=binding.exnombre.text.toString()
+        val correo=binding.excorreo.text.toString()
+        val direccion=binding.exdireccion.text.toString()
+        val telefono=binding.extelefono.text.toString()
+
+        mFirestore.collection("user").document(correo).set(
+            hashMapOf( "correo" to correo,
+                "nombre" to nombre,
+                "direccion" to direccion,
+                "telefono" to telefono,
+              )).addOnCompleteListener(requireActivity()) { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(context, "Los datos se han actualizado", Toast.LENGTH_SHORT).show()
+
+            } else {
+                Toast.makeText(context, "No se han podido actualizar los datos", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+
+    }
+    private fun editar_Datos() {
+        binding.exnombre.isEnabled=true
+        binding.excorreo.isEnabled=true
+        binding.exdireccion.isEnabled=true
+        binding.extelefono.isEnabled=true
+
+    }
+
+    private fun cargar_datos() {
+        val correo = get_email()
+        mFirestore.collection("user").whereEqualTo("correo",correo)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                querySnapshot.forEach { document ->
+                    binding.exnombre.setText("${document.data["nombre"]}")
+                    binding.excorreo.setText("${document.data["correo"]}")
+                    binding.exdireccion.setText("${document.data["direccion"]}")
+                    binding.extelefono.setText("${document.data["telefono"]}")
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting documents $exception")
+            }
     }
 
     companion object {
@@ -63,13 +94,5 @@ class Info_cuenta : Fragment() {
         return email
     }
 
-    override fun onStop() {
-        super.onStop()
-        cAdapter.startListening()
-    }
 
-    override fun onStart() {
-        super.onStart()
-        cAdapter.startListening()
-    }
 }

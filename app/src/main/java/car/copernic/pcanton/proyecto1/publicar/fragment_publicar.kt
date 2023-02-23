@@ -14,6 +14,7 @@ import car.copernic.pcanton.proyecto1.databinding.FragmentPublicarBinding
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -59,9 +60,7 @@ class fragment_publicar : Fragment() {
         val descipcion=binding.exnombredescripcion.text.toString()
         val precio=binding.exprecio.text.toString()
         val vendedor= get_email()
-        val data = HashMap<String, Any>()
-
-
+        val uniqueID = UUID.randomUUID().toString()
 
         mFirestore.collection("anuncios").document(nombre).set(
             hashMapOf("descripcion" to descipcion,
@@ -69,9 +68,15 @@ class fragment_publicar : Fragment() {
                 "precio" to precio,
                 "ubicacion" to ubicacion,
                 "vendedor" to vendedor,
-                "foto" to uri))
-
-
+                "foto" to uri,
+            "id" to uniqueID)).addOnCompleteListener(requireActivity()) { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(context, "Anuncio publicado", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "No se ha podido publicar el anuncio", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     private  fun get_email(): String {

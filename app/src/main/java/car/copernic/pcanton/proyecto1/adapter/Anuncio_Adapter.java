@@ -44,7 +44,7 @@ public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_A
             Bundle bundle = new Bundle();
             Fragment fragment = new mostrar_anuncio();
             fragment.setArguments(bundle);
-            bundle.putString("nombre", model.getNombre());
+            bundle.putString("nombre", model.getId());
             AppCompatActivity activity = (AppCompatActivity) view.getContext();
             activity.getSupportFragmentManager().beginTransaction().
                     replace(R.id.frame_layout_main, fragment).addToBackStack(null).commit();

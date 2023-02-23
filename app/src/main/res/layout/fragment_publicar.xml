@@ -44,7 +44,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Direccion"
+            android:text="ubicacion"
             app:layout_constraintStart_toStartOf="@+id/exprecio"
             app:layout_constraintTop_toBottomOf="@+id/exprecio" />
 

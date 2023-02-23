@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mostrar_anuncio.mostrar_anuncio"
-    >
-    <FrameLayout
-        android:id="@+id/frame_layout_mostrar"
+    tools:context=".mostrar_anuncio.mostrar_anuncio">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/texto_nombre"
+            android:layout_width="227dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagen_anuncio" />
 
-    <TextView
-        android:id="@+id/nombre_anuncio"
-        android:layout_width="113dp"
-        android:layout_height="55dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="209dp" />
-    </FrameLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/texto_descripcion"
+            android:layout_width="227dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_nombre" />
+
+        <TextView
+            android:id="@+id/texto_ubicacion"
+            android:layout_width="227dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_descripcion" />
+
+        <TextView
+            android:id="@+id/texto_precio"
+            android:layout_width="227dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_ubicacion" />
+
+        <ImageView
+            android:id="@+id/imagen_anuncio"
+            android:layout_width="292dp"
+            android:layout_height="194dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
 

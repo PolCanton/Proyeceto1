@@ -2,16 +2,25 @@ package car.copernic.pcanton.proyecto1.Modelo;
 
 public class Anuncio {
 
-    String nombre,descripcion,foto,precio,ubicacion;
+    String nombre,descripcion,foto,precio,ubicacion,id;
 
     public Anuncio(){}
 
-    public Anuncio(String nombre, String descripcion, String foto, String precio, String ubicacion) {
+    public Anuncio(String nombre, String descripcion, String foto, String precio, String ubicacion, String id) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.foto = foto;
         this.precio = precio;
         this.ubicacion = ubicacion;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
