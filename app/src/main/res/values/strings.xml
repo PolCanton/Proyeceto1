@@ -16,5 +16,6 @@
     <string name="Contraseña">Contraseña</string>
     <string name="Nombre_proyecto">Proyecto</string>
     <string name="crear_cuenta_nueva">Crear cuenta nueva</string>
+    <string name="msg_token_fmt">dd</string>
 
 </resources>

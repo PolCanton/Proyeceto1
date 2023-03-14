@@ -1,10 +1,14 @@
 package car.copernic.pcanton.proyecto1.alertas
 
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio
 import car.copernic.pcanton.proyecto1.R
@@ -13,21 +17,33 @@ import car.copernic.pcanton.proyecto1.databinding.ActivityIniciarSessionBinding
 import car.copernic.pcanton.proyecto1.databinding.FragmentAlertaBinding
 import car.copernic.pcanton.proyecto1.databinding.FragmentBuscarBinding
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 class fragment_alerta : Fragment() {
     private lateinit var binding: FragmentAlertaBinding
 
+    @SuppressLint("StringFormatInvalid")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View{
         binding = FragmentAlertaBinding.inflate(inflater, container, false)
 
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
 
+            // Get new FCM registration token
+            val token = task.result
+            Log.d("token", token)
+        })
 
         return binding.root
     }
