@@ -20,34 +20,56 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio;
 import car.copernic.pcanton.proyecto1.R;
 import car.copernic.pcanton.proyecto1.mostrar_anuncio.mostrar_anuncio;
 
 public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_Adapter.ViewHolder> {
 
+String opcion;
+
+    public String getOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(String opcion) {
+        this.opcion = opcion;
+    }
+
     public Anuncio_Adapter(@NotNull FirestoreRecyclerOptions<Anuncio> options) {
         super(options);
+    }
+
+    public Anuncio_Adapter(@NonNull FirestoreRecyclerOptions<Anuncio> options, String opcion) {
+        super(options);
+        this.opcion = opcion;
+        setOpcion(opcion);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull Anuncio_Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Anuncio model) {
         holder.nombre.setText(model.getNombre());
         holder.precio.setText(model.getPrecio());
-        holder.ubicacion.setText(model.getUbicacion() );
+        holder.ubicacion.setText(model.getUbicacion());
         Glide.with(holder.foto.getContext())
                 .load(model.getFoto())
                 .placeholder(com.firebase.ui.firestore.R.drawable.common_google_signin_btn_icon_dark)
                 .error(com.firebase.ui.firestore.R.drawable.common_google_signin_btn_icon_disabled)
                 .into(holder.foto);
+
         holder.cardView.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            Fragment fragment = new mostrar_anuncio();
-            fragment.setArguments(bundle);
-            bundle.putString("nombre", model.getId());
-            AppCompatActivity activity = (AppCompatActivity) view.getContext();
-            activity.getSupportFragmentManager().beginTransaction().
-                    replace(R.id.frame_layout_main, fragment).addToBackStack(null).commit();
+
+                Bundle bundle = new Bundle();
+                Fragment fragment = new mostrar_anuncio();
+                fragment.setArguments(bundle);
+                bundle.putString("nombre", model.getId());
+                bundle.putString("opcion", opcion);
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager().beginTransaction().
+                        replace(R.id.frame_layout_main, fragment).addToBackStack(null).commit();
+
 
         });
     }

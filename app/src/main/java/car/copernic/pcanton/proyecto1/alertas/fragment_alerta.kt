@@ -23,6 +23,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.RemoteMessage
+import com.google.firebase.messaging.ktx.messaging
 
 class fragment_alerta : Fragment() {
     private lateinit var binding: FragmentAlertaBinding
@@ -34,20 +36,22 @@ class fragment_alerta : Fragment() {
     ): View{
         binding = FragmentAlertaBinding.inflate(inflater, container, false)
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
+        Firebase.messaging.subscribeToTopic("weather")
+            .addOnCompleteListener { task ->
+                var msg = "Subscribed"
+                if (!task.isSuccessful) {
+                    msg = "Subscribe failed"
+                }
+                Log.d(TAG, msg)
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
             }
 
-            // Get new FCM registration token
-            val token = task.result
-            Log.d("token", token)
-        })
 
         return binding.root
     }
     companion object {
         fun newInstance(): fragment_alerta = fragment_alerta()
     }
+
+
 }

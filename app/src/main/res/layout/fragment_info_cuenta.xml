@@ -73,7 +73,9 @@
             android:layout_marginBottom="108dp"
             android:text="Editar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/roundedbutton"
+            />
 
         <Button
             android:id="@+id/buttonaceptar"
@@ -83,7 +85,9 @@
             android:layout_marginBottom="108dp"
             android:text="Editar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/roundedbutton"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

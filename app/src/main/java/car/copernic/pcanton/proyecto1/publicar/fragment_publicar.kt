@@ -62,7 +62,7 @@ class fragment_publicar : Fragment() {
         val vendedor= get_email()
         val uniqueID = UUID.randomUUID().toString()
 
-        mFirestore.collection("anuncios").document(nombre).set(
+        mFirestore.collection("anuncios").document(uniqueID).set(
             hashMapOf("descripcion" to descipcion,
                 "nombre" to nombre,
                 "precio" to precio,

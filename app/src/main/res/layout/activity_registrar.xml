@@ -164,7 +164,7 @@
             android:layout_height="48dp"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/ic_buttom"
+            android:background="@drawable/roundedbutton"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
             android:text="@string/crear_cuenta_nueva"

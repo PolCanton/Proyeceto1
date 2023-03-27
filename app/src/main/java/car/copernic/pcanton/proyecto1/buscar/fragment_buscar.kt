@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,12 +26,14 @@ class fragment_buscar : Fragment() {
     lateinit var query: Query
     lateinit var email:String
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View{
         binding = FragmentBuscarBinding.inflate(inflater, container, false)
         get_email()
+        val options="comprar"
         mFirestore = FirebaseFirestore.getInstance()
         mRecycler = binding.recyclerViewAnuncios
         mRecycler.layoutManager = GridLayoutManager(context,1)
@@ -40,7 +41,7 @@ class fragment_buscar : Fragment() {
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
             FirestoreRecyclerOptions.Builder<Anuncio>().setQuery(query,
                 Anuncio::class.java).build()
-        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions)
+        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions,options)
         mRecycler.adapter = mAdapter
 
         return binding.root

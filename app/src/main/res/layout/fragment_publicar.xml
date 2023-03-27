@@ -12,77 +12,79 @@
 
         <EditText
             android:id="@+id/exnombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="170dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="37dp"
             android:ems="10"
+            android:hint="nombre"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="nombre"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exnombredescripcion" />
-
-        <EditText
-            android:id="@+id/exprecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="80dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="Precio"
+            app:layout_constraintEnd_toStartOf="@+id/imgView"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/exnombreubicacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:id="@+id/exprecio"
+            android:layout_width="169dp"
+            android:layout_height="89dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
+            android:hint="Precio"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="ubicacion"
-            app:layout_constraintStart_toStartOf="@+id/exprecio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exnombre" />
+
+        <EditText
+            android:id="@+id/exnombreubicacion"
+            android:layout_width="167dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="ubicacion"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exprecio" />
 
         <EditText
             android:id="@+id/exnombredescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="21dp"
+            android:layout_width="378dp"
+            android:layout_height="123dp"
+            android:layout_marginTop="36dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:hint="descripcion"
+            android:inputType="textMultiLine"
             android:minHeight="48dp"
-            android:text="descripcion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.351"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exnombreubicacion" />
 
         <Button
             android:id="@+id/buttonaceptar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="146dp"
-            android:layout_marginBottom="102dp"
+            android:layout_width="385dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="94dp"
+            android:background="@drawable/roundedbutton"
             android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exnombredescripcion" />
 
         <ImageView
             android:id="@+id/imgView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="13dp"
-            app:layout_constraintBottom_toTopOf="@+id/exnombreubicacion"
+            android:layout_width="188dp"
+            android:layout_height="277dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_camara"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/exprecio"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

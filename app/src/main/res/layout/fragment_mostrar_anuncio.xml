@@ -10,55 +10,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <EditText
             android:id="@+id/texto_nombre"
             android:layout_width="227dp"
             android:layout_height="50dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagen_anuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/imagen_anuncio"
+            android:enabled="false"/>
 
-        <TextView
-            android:id="@+id/texto_descripcion"
-            android:layout_width="227dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/texto_nombre" />
-
-        <TextView
-            android:id="@+id/texto_ubicacion"
-            android:layout_width="227dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/texto_descripcion" />
-
-        <TextView
+        <EditText
             android:id="@+id/texto_precio"
             android:layout_width="227dp"
             android:layout_height="50dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/texto_ubicacion" />
+            app:layout_constraintTop_toBottomOf="@+id/texto_nombre"
+            android:enabled="false"/>
+
+        <EditText
+            android:id="@+id/texto_ubicacion"
+            android:layout_width="227dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_precio"
+            android:enabled="false"/>
+
+        <EditText
+            android:id="@+id/texto_descripcion"
+            android:layout_width="372dp"
+            android:layout_height="138dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_ubicacion"
+            android:enabled="false"/>
 
         <ImageView
             android:id="@+id/imagen_anuncio"
-            android:layout_width="292dp"
-            android:layout_height="194dp"
-            android:layout_marginStart="56dp"
+            android:layout_width="407dp"
+            android:layout_height="178dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/bttn_comprar"
+            android:layout_width="140dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/roundedbutton"
+            android:text="Comprar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_descripcion" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
 

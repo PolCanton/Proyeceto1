@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio
-import car.copernic.pcanton.proyecto1.R
 import car.copernic.pcanton.proyecto1.adapter.Anuncio_Adapter
 import car.copernic.pcanton.proyecto1.databinding.FragmentMisAnunciosBinding
-import car.copernic.pcanton.proyecto1.databinding.FragmentPublicarBinding
 import car.copernic.pcanton.proyecto1.mostrar_anuncio.mostrar_anuncio
 import car.copernic.pcanton.proyecto1.publicar.fragment_publicar
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -28,7 +26,7 @@ class Mis_Anuncios : Fragment() {
     lateinit var mFirestore: FirebaseFirestore
     lateinit var query: Query
     lateinit var email:String
-
+    private var opcion="editar"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -42,7 +40,8 @@ class Mis_Anuncios : Fragment() {
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
             FirestoreRecyclerOptions.Builder<Anuncio>().setQuery(query,
                 Anuncio::class.java).build()
-        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions)
+        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions,opcion)
+
         mRecycler.adapter = mAdapter
 
         return binding.root
