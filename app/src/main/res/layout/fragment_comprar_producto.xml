@@ -18,22 +18,10 @@
 
         <EditText
             android:id="@+id/et_location"
-            android:layout_width="250dp"
+            android:layout_width="373dp"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress" />
 
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0" />
-
-        <Button
-            android:id="@+id/btn_change_location"
-            android:layout_width="95dp"
-            android:layout_height="45dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="16dp"
-            android:text="Editar " />
     </LinearLayout>
 
     <TextView
@@ -96,14 +84,6 @@
             android:inputType="number"
             android:maxLines="1" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_change_card_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="16dp"
-        android:text="Editar" />
 
     <Button
         android:id="@+id/btn_comprar"

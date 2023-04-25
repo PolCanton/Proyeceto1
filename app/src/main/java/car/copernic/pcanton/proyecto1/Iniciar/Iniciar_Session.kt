@@ -1,33 +1,46 @@
 package car.copernic.pcanton.proyecto1.Iniciar
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import car.copernic.pcanton.proyecto1.MainActivity
 import car.copernic.pcanton.proyecto1.Regsitrar.Registrar
 import car.copernic.pcanton.proyecto1.databinding.ActivityIniciarSessionBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+
 
 class Iniciar_Session : AppCompatActivity() {
     private lateinit var binding: ActivityIniciarSessionBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var viewModel: iniciar_sessionViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIniciarSessionBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(this).get(iniciar_sessionViewModel::class.java)
+        viewModel.onStart()
+
         setContentView(binding.root)
         auth = Firebase.auth
-
         binding.signInAppCompatButton.setOnClickListener{ signInAppCompatButtonOnClick() }
         binding.cuentaTextView.setOnClickListener{ registrar() }
+        viewModel.signInSuccess.observe(this) { success ->
+            if (success) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+        }
 
-
-
+        viewModel.signInError.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+        }
     }
     public override fun onStart() {
         super.onStart()
@@ -51,33 +64,10 @@ class Iniciar_Session : AppCompatActivity() {
     }
 
     private fun signInAppCompatButtonOnClick() {
-        val email=binding.emailEditText2.text.toString()
-        val pswrd=binding.passwordEditText2.text.toString()
-
-        when {
-            pswrd.isEmpty() || email.isEmpty() -> {
-                Toast.makeText(this, "Email o contraseña o incorrectos.",
-                    Toast.LENGTH_SHORT).show()
-            }
-            else -> {
-                signIn(email, pswrd)
-            }
-        }
+        viewModel.email.value = binding.emailEditText2.text.toString()
+        viewModel.password.value = binding.passwordEditText2.text.toString()
+        viewModel.signIn()
     }
 
-    private fun signIn(email: String, pswrd: String) {
-        auth.signInWithEmailAndPassword(email, pswrd)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d("TAG", "signInWithEmail:success")
-                    val intent = Intent(this, MainActivity::class.java)
-                    this.startActivity(intent)
-                } else {
-                    Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Email o contraseña o incorrectos.",
-                        Toast.LENGTH_SHORT).show()
-                    reload()
-                }
-            }
-    }
+
 }

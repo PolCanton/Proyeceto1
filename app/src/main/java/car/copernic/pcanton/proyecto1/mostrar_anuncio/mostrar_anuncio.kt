@@ -37,6 +37,7 @@ import java.util.*
 class mostrar_anuncio : Fragment() {
     private lateinit var binding: FragmentMostrarAnuncioBinding
     private lateinit var id: String
+    private lateinit var nombre: String
     private lateinit var opcion: String
     lateinit var filePath: Uri
     lateinit  var storageReference: StorageReference
@@ -68,7 +69,10 @@ class mostrar_anuncio : Fragment() {
 
     private fun nav_comprar() {
         val fragment = comprar_producto.newInstance()
-
+        val args = Bundle()
+        nombre=binding.textoNombre.text.toString()
+        args.putString("id", nombre)
+        fragment.arguments = args
         val transaction = getParentFragmentManager().beginTransaction()
         transaction.replace(R.id.frame_layout_main, fragment)
         transaction.addToBackStack(null)
@@ -80,7 +84,7 @@ class mostrar_anuncio : Fragment() {
         binding.bttnComprar.setOnClickListener{
             if(binding.bttnComprar.text.equals("Editar")){
                 binding.bttnComprar.setText("Aceptar")
-            binding.textoNombre.isEnabled=true
+               binding.textoNombre.isEnabled=true
                 binding.textoDescripcion.isEnabled=true
                 binding.textoPrecio.isEnabled=true
                 binding.textoUbicacion.isEnabled=true
@@ -108,12 +112,6 @@ class mostrar_anuncio : Fragment() {
             .get()
             .addOnSuccessListener { querySnapshot ->
                 querySnapshot.forEach { document ->
-                    Log.d(ContentValues.TAG, "Read document with ID ${  document.data["descripcion"]}")
-                    Log.d(ContentValues.TAG, "Read document with ID ${  document.data["foto"]}")
-                    Log.d(ContentValues.TAG, "Read document with ID ${  document.data["nombre"]}")
-                    Log.d(ContentValues.TAG, "Read document with ID ${  document.data["precio"]}")
-                    Log.d(ContentValues.TAG, "Read document with ID ${  document.data["ubicacion"]}")
-                    Log.d(ContentValues.TAG, "Read document with ID ${  document.data["vendedor"]}")
                      url="${document.data["foto"]}"
                     binding.textoNombre.setText( "${document.data["nombre"]}")
                     binding.textoDescripcion.setText( "${document.data["descripcion"]}")

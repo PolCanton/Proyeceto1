@@ -28,19 +28,15 @@ import car.copernic.pcanton.proyecto1.mostrar_anuncio.mostrar_anuncio;
 
 public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_Adapter.ViewHolder> {
 
-String opcion;
-
-    public String getOpcion() {
-        return opcion;
-    }
+    String opcion;
 
     public void setOpcion(String opcion) {
         this.opcion = opcion;
     }
 
-    public Anuncio_Adapter(@NotNull FirestoreRecyclerOptions<Anuncio> options) {
-        super(options);
-    }
+//    public Anuncio_Adapter(@NotNull FirestoreRecyclerOptions<Anuncio> options) {
+//        super(options);
+//    }
 
     public Anuncio_Adapter(@NonNull FirestoreRecyclerOptions<Anuncio> options, String opcion) {
         super(options);
@@ -61,14 +57,14 @@ String opcion;
 
         holder.cardView.setOnClickListener(view -> {
 
-                Bundle bundle = new Bundle();
-                Fragment fragment = new mostrar_anuncio();
-                fragment.setArguments(bundle);
-                bundle.putString("nombre", model.getId());
-                bundle.putString("opcion", opcion);
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().
-                        replace(R.id.frame_layout_main, fragment).addToBackStack(null).commit();
+            Bundle bundle = new Bundle();
+            Fragment fragment = new mostrar_anuncio();
+            fragment.setArguments(bundle);
+            bundle.putString("nombre", model.getId());
+            bundle.putString("opcion", opcion);
+            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+            activity.getSupportFragmentManager().beginTransaction().
+                    replace(R.id.frame_layout_main, fragment).addToBackStack(null).commit();
 
 
         });

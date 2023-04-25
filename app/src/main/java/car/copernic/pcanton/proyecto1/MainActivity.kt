@@ -31,14 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
         when (item.itemId) {
-            R.id.navigation_alertas -> {
-                val fragmentAlerta = fragment_alerta.newInstance()
-                openFragment(fragmentAlerta)
-                return@OnNavigationItemSelectedListener true
-            }
             R.id.navigation_buscar -> {
                 val fragmentbuscar = fragment_buscar.newInstance()
                 openFragment(fragmentbuscar)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_alertas -> {
+                val fragmentAlerta = fragment_alerta.newInstance()
+                openFragment(fragmentAlerta)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_cuenta -> {

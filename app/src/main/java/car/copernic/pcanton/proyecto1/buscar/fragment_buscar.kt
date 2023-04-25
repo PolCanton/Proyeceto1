@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio
 import car.copernic.pcanton.proyecto1.adapter.Anuncio_Adapter
+import car.copernic.pcanton.proyecto1.alertas.fragment_alertaViewModel
 import car.copernic.pcanton.proyecto1.databinding.FragmentBuscarBinding
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.ktx.auth
@@ -25,6 +27,7 @@ class fragment_buscar : Fragment() {
     lateinit var mFirestore: FirebaseFirestore
     lateinit var query: Query
     lateinit var email:String
+    private lateinit var viewModel: fragment_buscarViewModel
 
 
     override fun onCreateView(
@@ -32,7 +35,8 @@ class fragment_buscar : Fragment() {
         savedInstanceState: Bundle?,
     ): View{
         binding = FragmentBuscarBinding.inflate(inflater, container, false)
-        get_email()
+        viewModel = ViewModelProvider(this).get(fragment_buscarViewModel::class.java)
+        email=viewModel.get_email().toString()
         val options="comprar"
         mFirestore = FirebaseFirestore.getInstance()
         mRecycler = binding.recyclerViewAnuncios
@@ -47,15 +51,6 @@ class fragment_buscar : Fragment() {
         return binding.root
     }
 
-
-    private  fun get_email() {
-        val user = Firebase.auth.currentUser
-        val let = user?.let {
-
-            email = it.email.toString()
-
-        }
-    }
 
     companion object {
         fun newInstance(): fragment_buscar = fragment_buscar()

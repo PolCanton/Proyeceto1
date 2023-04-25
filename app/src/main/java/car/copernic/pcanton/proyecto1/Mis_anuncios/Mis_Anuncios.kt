@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio
@@ -18,53 +19,40 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 
-
 class Mis_Anuncios : Fragment() {
+
     private lateinit var binding: FragmentMisAnunciosBinding
+    private lateinit var mViewModel: fragment_mis_anunciosViewModel
     lateinit var mAdapter: Anuncio_Adapter
     lateinit var mRecycler: RecyclerView
-    lateinit var mFirestore: FirebaseFirestore
-    lateinit var query: Query
-    lateinit var email:String
-    private var opcion="editar"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMisAnunciosBinding.inflate(inflater, container, false)
-        var correo = get_email()
-        mFirestore = FirebaseFirestore.getInstance()
+        mViewModel = ViewModelProvider(this).get(fragment_mis_anunciosViewModel::class.java)
+        var query = mViewModel.getAnuncios()
         mRecycler = binding.recyclerViewMisanuncios
         mRecycler.layoutManager = GridLayoutManager(context,1)
-        query = mFirestore.collection("anuncios").whereEqualTo("vendedor",correo  )
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
             FirestoreRecyclerOptions.Builder<Anuncio>().setQuery(query,
                 Anuncio::class.java).build()
-        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions,opcion)
-
+        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions,"editar")
         mRecycler.adapter = mAdapter
 
         return binding.root
     }
-
-    private  fun get_email(): String {
-        val user = Firebase.auth.currentUser
-        var email=""
-        user?.let {
-            email = it.email.toString()
-        }
-        return email
-    }
     companion object {
         fun newInstance(): Mis_Anuncios = Mis_Anuncios()
     }
-    override fun onStop() {
-        super.onStop()
-        mAdapter.startListening()
-    }
-
     override fun onStart() {
         super.onStart()
         mAdapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mAdapter.stopListening()
     }
 }
