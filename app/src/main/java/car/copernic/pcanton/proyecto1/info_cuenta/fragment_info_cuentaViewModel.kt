@@ -62,9 +62,9 @@ class fragment_info_cuentaViewModel : ViewModel() {
                 "telefono" to telefono,
             )).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                // hacer algo en caso de éxito
+                Log.w(ContentValues.TAG, "Datos insertados")
             } else {
-                // hacer algo en caso de error
+                Log.w(ContentValues.TAG, "Error al insertar los datos")
             }
         }
     }

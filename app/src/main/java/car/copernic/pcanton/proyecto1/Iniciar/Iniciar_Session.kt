@@ -24,7 +24,6 @@ class Iniciar_Session : AppCompatActivity() {
         binding = ActivityIniciarSessionBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this).get(iniciar_sessionViewModel::class.java)
         viewModel.onStart()
-
         setContentView(binding.root)
         auth = Firebase.auth
         binding.signInAppCompatButton.setOnClickListener{ signInAppCompatButtonOnClick() }
@@ -35,6 +34,10 @@ class Iniciar_Session : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
+            }else{
+                Toast.makeText(this,"Error al iniciar session",Toast.LENGTH_LONG).show()
+
+                //reload()
             }
         }
 

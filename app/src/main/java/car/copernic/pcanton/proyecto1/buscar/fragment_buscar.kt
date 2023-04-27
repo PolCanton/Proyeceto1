@@ -23,12 +23,8 @@ class fragment_buscar : Fragment() {
 
     private lateinit var binding: FragmentBuscarBinding
     lateinit var mAdapter: Anuncio_Adapter
-    lateinit var mRecycler: RecyclerView
-    lateinit var mFirestore: FirebaseFirestore
-    lateinit var query: Query
-    lateinit var email:String
-    private lateinit var viewModel: fragment_buscarViewModel
 
+    private lateinit var viewModel: fragment_buscarViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,22 +32,12 @@ class fragment_buscar : Fragment() {
     ): View{
         binding = FragmentBuscarBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(fragment_buscarViewModel::class.java)
-        email=viewModel.get_email().toString()
-        val options="comprar"
-        mFirestore = FirebaseFirestore.getInstance()
-        mRecycler = binding.recyclerViewAnuncios
-        mRecycler.layoutManager = GridLayoutManager(context,1)
-        query = mFirestore.collection("anuncios")
-        val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
-            FirestoreRecyclerOptions.Builder<Anuncio>().setQuery(query,
-                Anuncio::class.java).build()
-        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions,options)
-        mRecycler.adapter = mAdapter
+        val options = "comprar"
+        viewModel.cargarDatos(requireContext(), options, binding.recyclerViewAnuncios)
+        mAdapter = viewModel.getMAdapter()
 
         return binding.root
     }
-
-
     companion object {
         fun newInstance(): fragment_buscar = fragment_buscar()
     }
@@ -65,6 +51,8 @@ class fragment_buscar : Fragment() {
         super.onStart()
         mAdapter.startListening()
     }
+
+
 
 
 }

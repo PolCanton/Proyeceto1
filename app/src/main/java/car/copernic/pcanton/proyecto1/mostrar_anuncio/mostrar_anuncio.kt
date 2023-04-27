@@ -1,15 +1,12 @@
 package car.copernic.pcanton.proyecto1.mostrar_anuncio
 
-import android.app.Activity
 import android.content.ContentValues
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,16 +19,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.net.URL
 import java.util.concurrent.Executors
 import car.copernic.pcanton.proyecto1.comprar.comprar_producto
-import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
-import java.io.File
-import java.io.IOException
-import java.util.*
+
 
 
 class mostrar_anuncio : Fragment() {
