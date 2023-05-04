@@ -63,7 +63,7 @@ class mostrar_anuncio : Fragment() {
         val fragment = comprar_producto.newInstance()
         val args = Bundle()
         nombre=binding.textoNombre.text.toString()
-        args.putString("id", nombre)
+        args.putString("id", id)
         fragment.arguments = args
         val transaction = getParentFragmentManager().beginTransaction()
         transaction.replace(R.id.frame_layout_main, fragment)

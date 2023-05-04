@@ -37,6 +37,7 @@ public class Ventas_Adapter extends FirestoreRecyclerAdapter<Venta, Ventas_Adapt
     protected void onBindViewHolder(@NonNull Ventas_Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Venta model) {
         holder.producto.setText(model.getIdproducto());
         holder.direccion.setText(model.getDireccion());
+        holder.correo.setText(model.getCorreo());
     }
 
     @NonNull
@@ -50,11 +51,14 @@ public class Ventas_Adapter extends FirestoreRecyclerAdapter<Venta, Ventas_Adapt
         TextView producto;
         TextView direccion;
         CardView cardView;
+        TextView correo;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             producto=itemView.findViewById(R.id.textView_nombre_producto);
             direccion=itemView.findViewById(R.id.textview_direccion);
             cardView=itemView.findViewById(R.id.card_view_ventas);
+            correo=itemView.findViewById(R.id.textview_comprador);
+
         }
     }
 

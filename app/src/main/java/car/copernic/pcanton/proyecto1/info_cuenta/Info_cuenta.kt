@@ -1,22 +1,13 @@
 package car.copernic.pcanton.proyecto1.info_cuenta
 
-import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import car.copernic.pcanton.proyecto1.cuenta.fragment_cuentaViewModel
 import car.copernic.pcanton.proyecto1.databinding.FragmentInfoCuentaBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import com.google.firestore.v1.WriteResult
-import java.util.*
 
 
 class Info_cuenta : Fragment() {
@@ -34,10 +25,14 @@ class Info_cuenta : Fragment() {
         viewModel.cargarDatos()
         binding.buttoneditar.setOnClickListener{editar_Datos()}
         binding.buttonaceptar.setOnClickListener{actualizar_datos()}
+        obesrvers()
+        return binding.root
+    }
+
+    private fun obesrvers() {
         viewModel.nombre.observe(viewLifecycleOwner) { nombre ->
             binding.exnombre.setText(nombre)
         }
-
         viewModel.correo.observe(viewLifecycleOwner) { correo ->
             binding.excorreo.setText(correo)
         }
@@ -48,9 +43,7 @@ class Info_cuenta : Fragment() {
 
         viewModel.telefono.observe(viewLifecycleOwner) { telefono ->
             binding.extelefono.setText(telefono)
-        }
-        return binding.root
-    }
+        }    }
 
     private fun actualizar_datos() {
         val nombre=binding.exnombre.text.toString()
@@ -65,8 +58,6 @@ class Info_cuenta : Fragment() {
         binding.exdireccion.isEnabled=true
         binding.extelefono.isEnabled=true
     }
-
-
 
     companion object {
         fun newInstance(): Info_cuenta = Info_cuenta()

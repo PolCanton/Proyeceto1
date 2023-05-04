@@ -20,10 +20,10 @@ class iniciar_sessionViewModel : ViewModel() {
     val signInSuccess = MutableLiveData<Boolean>()
     val signInError = MutableLiveData<String>()
 
-    init {
-        signInSuccess.value = false
-        signInError.value = ""
-    }
+//    init {
+//        signInSuccess.value = false
+//        signInError.value = ""
+//    }
 
     fun onStart() {
         val currentUser = auth.currentUser

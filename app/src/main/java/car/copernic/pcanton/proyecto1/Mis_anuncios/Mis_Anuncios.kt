@@ -32,15 +32,8 @@ class Mis_Anuncios : Fragment() {
     ): View {
         binding = FragmentMisAnunciosBinding.inflate(inflater, container, false)
         mViewModel = ViewModelProvider(this).get(fragment_mis_anunciosViewModel::class.java)
-        var query = mViewModel.getAnuncios()
-        mRecycler = binding.recyclerViewMisanuncios
-        mRecycler.layoutManager = GridLayoutManager(context,1)
-        val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> =
-            FirestoreRecyclerOptions.Builder<Anuncio>().setQuery(query,
-                Anuncio::class.java).build()
-        mAdapter = Anuncio_Adapter(firestoreRecyclerOptions,"editar")
-        mRecycler.adapter = mAdapter
-
+        mViewModel.cargarDatos(requireContext(), binding.recyclerViewMisanuncios)
+        mAdapter = mViewModel.getMAdapter()
         return binding.root
     }
     companion object {

@@ -37,12 +37,20 @@
             android:textStyle="bold" />
 
 
+        <TextView
+            android:id="@+id/textview_comprador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview_direccion"
+            android:text="Texto ejemplo"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_enviado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textview_direccion"
+            android:layout_below="@+id/textview_comprador"
             android:text="Enviado"
 
             />
