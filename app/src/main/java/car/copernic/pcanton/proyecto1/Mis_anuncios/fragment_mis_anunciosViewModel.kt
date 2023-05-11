@@ -13,6 +13,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 
 class fragment_mis_anunciosViewModel : ViewModel() {
+
     private val mFirestore = FirebaseFirestore.getInstance()
     lateinit var query: Query
     lateinit var email:String
@@ -31,7 +32,7 @@ class fragment_mis_anunciosViewModel : ViewModel() {
     fun cargarDatos(context: Context, recyclerView: RecyclerView) {
         var correo = get_email()
         recyclerView.layoutManager = GridLayoutManager(context, 1)
-        query = mFirestore.collection("anuncios").whereEqualTo("vendedor",correo  )
+        query = mFirestore.collection("anuncios").whereEqualTo("vendedor",correo)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<Anuncio> = FirestoreRecyclerOptions.Builder<Anuncio>()
             .setQuery(query, Anuncio::class.java).build()
         mAdapter = Anuncio_Adapter(firestoreRecyclerOptions, "editar")

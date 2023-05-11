@@ -1,13 +1,10 @@
 package car.copernic.pcanton.proyecto1.comprar
 
-import android.R
-import android.app.Application
+import android.content.ContentValues
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import car.copernic.pcanton.proyecto1.buscar.fragment_buscarViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -23,68 +20,44 @@ class fragment_comprar_productoViewModel : ViewModel() {
     private var _correoVendedor =MutableLiveData<String>()
     var correoVendedor: LiveData<String> = _correoVendedor
 
-
-
+    private var _imagen =MutableLiveData<String>()
+    var imagen: LiveData<String> = _imagen
     private lateinit var email:String
     private var _nombreProducto =MutableLiveData<String>()
     var nombre_producto: LiveData<String> = _nombreProducto
-    lateinit var nombrep:String
-    lateinit var Correo:String
 
-    private fun getnombreProducto(id: String){
+    fun getVendedorYNombre(id: String, onComplete: () -> Unit) {
         mFirestore.collection("anuncios").whereEqualTo("id", id)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 querySnapshot.forEach { document ->
-                    nombrep= document.getString("nombre").toString()
-                    Log.d("error", "getnombreProducto si funciona")
+                    _nombreProducto.value = document.data["nombre"].toString()
+                    _correoVendedor.value = document.data["vendedor"].toString()
+                    _imagen.value=document.data["foto"].toString()
                 }
+                onComplete()
             }
             .addOnFailureListener { exception ->
-                Log.d("error", "getnombreProducto no funciona")
-            }
-    }
-    private fun getcorreoVendedor(id: String){
-        mFirestore.collection("anuncios")
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                querySnapshot.forEach { document ->
-                    Correo= document.getString("vendedor").toString()
-                    Log.d("error", "getcorreoVendedor si funciona")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("error", "getcorreoVendedor no funciona")
+                Log.w("error", "getVendedorYNombre no funciona")
             }
     }
 
-    fun getVendedorYNombre(id: String) {
-        val docRef = mFirestore.collection("anuncios").document(id)
-        docRef.get().addOnSuccessListener { documentSnapshot ->
-            val data = documentSnapshot.data
-            Correo = (data?.get("vendedor") as? String).toString()
-            nombrep = (data?.get("nombre") as? String).toString()
-        }.addOnFailureListener { exception ->
-            Log.d("error", "getcorreoVendedor no funciona")
+    fun insertarCompra(direccion: String, idProducto: String) {
+        getVendedorYNombre(idProducto) {
+            get_email()
 
-        }
-    }
-    fun insertarCompra(direccion: String,idProducto:String) {
-//        getcorreoVendedor(idProducto)
-//        getnombreProducto(idProducto)
-        getVendedorYNombre(idProducto)
-        get_email()
-
-        val uniqueID = UUID.randomUUID().toString()
-        mFirestore.collection("compras").document(uniqueID).set(
-            hashMapOf(
-                "idproducto" to idProducto,
-                "direccion" to direccion,
-                "vendedor" to Correo,
-                "comprador" to email,
-                "nombre" to nombrep
+            val uniqueID = UUID.randomUUID().toString()
+            mFirestore.collection("compras").document(uniqueID).set(
+                hashMapOf(
+                    "idproducto" to idProducto,
+                    "direccion" to direccion,
+                    "vendedor" to _imagen.value,
+                    "comprador" to email,
+                    "nombre" to _nombreProducto.value,
+                    "foto" to _imagen.value
+                )
             )
-        )
+        }
     }
     fun getDireccion() {
         get_email()

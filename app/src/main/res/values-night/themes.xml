@@ -1,3 +1,4 @@
+<!-- themes.xml (night) -->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Proyecto1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -12,5 +13,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="icono_camara" tools:targetApi="n">@drawable/ic_camara_blanca</item>
     </style>
 </resources>

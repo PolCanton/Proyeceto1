@@ -1,0 +1,4 @@
+<!-- attrs.xml -->
+<resources>
+    <attr name="icono_camara" format="reference" />
+</resources>

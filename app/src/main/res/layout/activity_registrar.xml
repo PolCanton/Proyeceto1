@@ -15,14 +15,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imagenVolver"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/ic_back" />
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titulo_pantalla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:gravity="center"
             android:text="@string/crear_cuenta_nueva"
-            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -31,20 +39,12 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imagenVolver"
-                android:layout_width="71dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                tools:srcCompat="@drawable/ic_back" />
-
-            <ImageView
                 android:id="@+id/pickimage"
                 android:layout_width="144dp"
                 android:layout_height="102dp"
                 android:layout_marginLeft="140dp"
-                android:gravity="center"
-                app:srcCompat="@drawable/usuario" />
+                app:srcCompat="@drawable/ic_usuario" />
+
 
         </LinearLayout>
 
@@ -62,11 +62,11 @@
 
         <EditText
             android:id="@+id/nombre"
+            android:background="@drawable/ic_field"
             android:layout_width="375dp"
             android:layout_height="55dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/ic_field"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="16dp"
             android:ems="10"
@@ -74,7 +74,6 @@
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:text="Pol Canton"
-            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
         <Space
@@ -95,8 +94,7 @@
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:text="pcanton@gmail.com"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+           />
 
         <EditText
             android:id="@+id/passwordEditText_crear_cuenta"
@@ -113,8 +111,7 @@
             android:inputType="textPassword"
             android:padding="16dp"
             android:text="123456ab"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+  />
 
         <Space
             android:layout_width="match_parent"
@@ -134,8 +131,7 @@
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:text="calle asdadwd"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+             />
 
         <Space
             android:layout_width="match_parent"
@@ -148,15 +144,14 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/ic_field"
-            android:drawableStart="@drawable/ic_phone"
+            android:drawableStart="@drawable/ic_telefono"
             android:drawablePadding="16dp"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:text="12334565434565"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+           />
 
         <Button
             android:id="@+id/boton_crear_cuenta"

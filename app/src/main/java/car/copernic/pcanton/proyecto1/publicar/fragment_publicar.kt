@@ -14,7 +14,6 @@ import car.copernic.pcanton.proyecto1.databinding.FragmentPublicarBinding
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -42,7 +41,12 @@ class fragment_publicar : Fragment() {
         storage = FirebaseStorage.getInstance()
         storageReference = storage!!.reference
         binding.buttonaceptar.setOnClickListener{
-            uploadImage()
+            if (binding.imgView.drawable == null) {
+                Toast.makeText(context, "Inserta una imagen", Toast.LENGTH_SHORT).show()
+
+            } else {
+                uploadImage()
+            }
         }
         binding.imgView.setOnClickListener{
             chooseImage()
@@ -54,31 +58,36 @@ class fragment_publicar : Fragment() {
         fun newInstance(): fragment_publicar = fragment_publicar()
     }
 
-    private fun insert_basedatos(uri: String) {
+    private fun publicar_anuncio(uri: String) {
         nombre = binding.exnombre.text.toString()
-        val ubicacion=binding.exnombreubicacion.text.toString()
-        val descipcion=binding.exnombredescripcion.text.toString()
-        val precio=binding.exprecio.text.toString()
-        val vendedor= get_email()
+        val ubicacion = binding.exnombreubicacion.text.toString()
+        val descipcion = binding.exnombredescripcion.text.toString()
+        val precio = binding.exprecio.text.toString()
+        val vendedor = get_email()
         val uniqueID = UUID.randomUUID().toString()
-
-        mFirestore.collection("anuncios").document(uniqueID).set(
-            hashMapOf("descripcion" to descipcion,
-                "nombre" to nombre,
-                "precio" to precio,
-                "ubicacion" to ubicacion,
-                "vendedor" to vendedor,
-                "foto" to uri,
-            "id" to uniqueID)).addOnCompleteListener(requireActivity()) { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(context, "Anuncio publicado", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "No se ha podido publicar el anuncio", Toast.LENGTH_SHORT)
-                    .show()
+        if (nombre.isNotBlank() && ubicacion.isNotBlank() && descipcion.isNotBlank() && precio.isNotBlank()&& vendedor.isNotBlank()&& uniqueID.isNotBlank()) {
+            mFirestore.collection("anuncios").document(uniqueID).set(
+                hashMapOf("descripcion" to descipcion,
+                    "nombre" to nombre,
+                    "precio" to precio,
+                    "ubicacion" to ubicacion,
+                    "vendedor" to vendedor,
+                    "foto" to uri,
+                    "id" to uniqueID)).addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(context, "Anuncio publicado", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context,
+                        "No se ha podido publicar el anuncio",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
+        }else{
+            Toast.makeText(context, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+
         }
     }
-
     private  fun get_email(): String {
         val user = Firebase.auth.currentUser
         var email=""
@@ -103,7 +112,7 @@ class fragment_publicar : Fragment() {
                 if (task.isSuccessful) {
                     val downloadUri = task.result
                     //   addUploadRecordToDb(downloadUri.toString())
-                    insert_basedatos(downloadUri.toString())
+                    publicar_anuncio(downloadUri.toString())
                 } else {
                     // Handle failures
                 }
