@@ -1,11 +1,8 @@
 package car.copernic.pcanton.proyecto1.Iniciar
-import android.content.Intent
+
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import car.copernic.pcanton.proyecto1.MainActivity
-import car.copernic.pcanton.proyecto1.Regsitrar.Registrar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -27,8 +24,8 @@ class iniciar_sessionViewModel : ViewModel() {
 
     fun onStart() {
         val currentUser = auth.currentUser
-        if(currentUser != null){
-            if(currentUser.isEmailVerified){
+        if (currentUser != null) {
+            if (currentUser.isEmailVerified) {
                 signInSuccess.value = true
             }
         }

@@ -41,7 +41,7 @@ public class Ventas_Adapter extends FirestoreRecyclerAdapter<Venta, Ventas_Adapt
     @NonNull
     @Override
     public Ventas_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ventas,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ventas, parent, false);
         return new ViewHolder(v);
     }
 
@@ -54,11 +54,11 @@ public class Ventas_Adapter extends FirestoreRecyclerAdapter<Venta, Ventas_Adapt
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            producto=itemView.findViewById(R.id.textView_nombre_producto);
-            direccion=itemView.findViewById(R.id.textview_direccion);
-            cardView=itemView.findViewById(R.id.card_view_ventas);
-            correo=itemView.findViewById(R.id.textview_comprador);
-            foto=itemView.findViewById(R.id.imageView2);
+            producto = itemView.findViewById(R.id.textView_nombre_producto);
+            direccion = itemView.findViewById(R.id.textview_direccion);
+            cardView = itemView.findViewById(R.id.card_view_ventas);
+            correo = itemView.findViewById(R.id.textview_comprador);
+            foto = itemView.findViewById(R.id.imageView2);
 
         }
     }

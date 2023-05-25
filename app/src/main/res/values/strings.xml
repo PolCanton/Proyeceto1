@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Proyecto1</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="titulo_proyecto">Proyecto</string>
+    <string name="titulo_proyecto">100 anuncios</string>
     <string name="Iniciar_Session">Proyecto</string>
     <string name="email">Correo electronico</string>
     <string name="password">Contraseña</string>

@@ -6,17 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import car.copernic.pcanton.proyecto1.Modelo.Anuncio
 import car.copernic.pcanton.proyecto1.adapter.Anuncio_Adapter
-import car.copernic.pcanton.proyecto1.alertas.fragment_alertaViewModel
 import car.copernic.pcanton.proyecto1.databinding.FragmentBuscarBinding
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.firebase.ktx.Firebase
 
 
 class fragment_buscar : Fragment() {
@@ -29,7 +20,7 @@ class fragment_buscar : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
+    ): View {
         binding = FragmentBuscarBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(fragment_buscarViewModel::class.java)
         val options = "comprar"
@@ -38,6 +29,7 @@ class fragment_buscar : Fragment() {
 
         return binding.root
     }
+
     companion object {
         fun newInstance(): fragment_buscar = fragment_buscar()
     }
@@ -51,8 +43,6 @@ class fragment_buscar : Fragment() {
         super.onStart()
         mAdapter.startListening()
     }
-
-
 
 
 }

@@ -27,20 +27,20 @@ class fragment_publicar : Fragment() {
     private lateinit var binding: FragmentPublicarBinding
     lateinit var mFirestore: FirebaseFirestore
     lateinit var filePath: Uri
-    lateinit  var storageReference: StorageReference
+    lateinit var storageReference: StorageReference
     lateinit var storage: FirebaseStorage
     private val PICK_IMAGE_REQUEST = 71
-    lateinit  var  nombre:String
+    lateinit var nombre: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
+    ): View {
         binding = FragmentPublicarBinding.inflate(inflater, container, false)
         mFirestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
         storageReference = storage!!.reference
-        binding.buttonaceptar.setOnClickListener{
+        binding.buttonaceptar.setOnClickListener {
             if (binding.imgView.drawable == null) {
                 Toast.makeText(context, "Inserta una imagen", Toast.LENGTH_SHORT).show()
 
@@ -48,7 +48,7 @@ class fragment_publicar : Fragment() {
                 uploadImage()
             }
         }
-        binding.imgView.setOnClickListener{
+        binding.imgView.setOnClickListener {
             chooseImage()
         }
         return binding.root
@@ -65,7 +65,7 @@ class fragment_publicar : Fragment() {
         val precio = binding.exprecio.text.toString()
         val vendedor = get_email()
         val uniqueID = UUID.randomUUID().toString()
-        if (nombre.isNotBlank() && ubicacion.isNotBlank() && descipcion.isNotBlank() && precio.isNotBlank()&& vendedor.isNotBlank()&& uniqueID.isNotBlank()) {
+        if (nombre.isNotBlank() && ubicacion.isNotBlank() && descipcion.isNotBlank() && precio.isNotBlank() && vendedor.isNotBlank() && uniqueID.isNotBlank()) {
             mFirestore.collection("anuncios").document(uniqueID).set(
                 hashMapOf("descripcion" to descipcion,
                     "nombre" to nombre,
@@ -83,47 +83,49 @@ class fragment_publicar : Fragment() {
                         .show()
                 }
             }
-        }else{
+        } else {
             Toast.makeText(context, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
 
         }
     }
-    private  fun get_email(): String {
+
+    private fun get_email(): String {
         val user = Firebase.auth.currentUser
-        var email=""
+        var email = ""
         user?.let {
             email = it.email.toString()
         }
         return email
     }
-    private fun uploadImage(){
-        if(filePath != null){
+
+    private fun uploadImage() {
+        if (filePath != null) {
             val ref = storageReference?.child("uploads/" + UUID.randomUUID().toString())
             val uploadTask = ref?.putFile(filePath!!)
 
-            val urlTask = uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
+            val urlTask =
+                uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let {
+                            throw it
+                        }
                     }
-                }
-                return@Continuation ref.downloadUrl
-            })?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                    //   addUploadRecordToDb(downloadUri.toString())
-                    publicar_anuncio(downloadUri.toString())
-                } else {
-                    // Handle failures
-                }
-            }?.addOnFailureListener{
+                    return@Continuation ref.downloadUrl
+                })?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val downloadUri = task.result
+                        //   addUploadRecordToDb(downloadUri.toString())
+                        publicar_anuncio(downloadUri.toString())
+                    } else {
+                        // Handle failures
+                    }
+                }?.addOnFailureListener {
 
-            }
-        }else{
+                }
+        } else {
             Toast.makeText(context, "Please Upload an Image", Toast.LENGTH_SHORT).show()
         }
     }
-
 
 
     private fun chooseImage() {

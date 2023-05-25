@@ -18,10 +18,6 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
-
 import car.copernic.pcanton.proyecto1.Modelo.Anuncio;
 import car.copernic.pcanton.proyecto1.R;
 import car.copernic.pcanton.proyecto1.mostrar_anuncio.mostrar_anuncio;
@@ -73,7 +69,7 @@ public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_A
     @NonNull
     @Override
     public Anuncio_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.view_anuncios,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_anuncios, parent, false);
         return new ViewHolder(v);
     }
 
@@ -83,13 +79,14 @@ public class Anuncio_Adapter extends FirestoreRecyclerAdapter<Anuncio, Anuncio_A
         TextView precio;
         TextView ubicacion;
         CardView cardView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foto=itemView.findViewById(R.id.item_image);
-            nombre=itemView.findViewById(R.id.textView_nombre);
-            precio=itemView.findViewById(R.id.textView_precio);
-            ubicacion=itemView.findViewById(R.id.textView_ubicacion);
-            cardView=itemView.findViewById(R.id.card_view_anuncios);
+            foto = itemView.findViewById(R.id.item_image);
+            nombre = itemView.findViewById(R.id.textView_nombre);
+            precio = itemView.findViewById(R.id.textView_precio);
+            ubicacion = itemView.findViewById(R.id.textView_ubicacion);
+            cardView = itemView.findViewById(R.id.card_view_anuncios);
         }
     }
 

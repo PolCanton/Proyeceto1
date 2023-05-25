@@ -2,7 +2,7 @@ package car.copernic.pcanton.proyecto1.Modelo;
 
 public class Venta {
 
-    String direccion, nombre,comprador,foto;
+    String direccion, nombre, comprador, foto;
 
     public Venta() {
     }

@@ -25,20 +25,19 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 
-
 class mostrar_anuncio : Fragment() {
     private lateinit var binding: FragmentMostrarAnuncioBinding
     private lateinit var id: String
     private lateinit var nombre: String
     private lateinit var opcion: String
     lateinit var filePath: Uri
-    lateinit  var storageReference: StorageReference
+    lateinit var storageReference: StorageReference
     lateinit var mFirestore: FirebaseFirestore
-    lateinit var url:String
+    lateinit var url: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
+    ): View {
         binding = FragmentMostrarAnuncioBinding.inflate(inflater, container, false)
         mFirestore = FirebaseFirestore.getInstance()
         val storage = FirebaseStorage.getInstance()
@@ -62,7 +61,7 @@ class mostrar_anuncio : Fragment() {
     private fun nav_comprar() {
         val fragment = comprar_producto.newInstance()
         val args = Bundle()
-        nombre=binding.textoNombre.text.toString()
+        nombre = binding.textoNombre.text.toString()
         args.putString("id", id)
         fragment.arguments = args
         val transaction = getParentFragmentManager().beginTransaction()
@@ -73,42 +72,42 @@ class mostrar_anuncio : Fragment() {
 
     private fun editar_producto() {
         binding.bttnComprar.setText("Editar")
-        binding.bttnComprar.setOnClickListener{
-            if(binding.bttnComprar.text.equals("Editar")){
+        binding.bttnComprar.setOnClickListener {
+            if (binding.bttnComprar.text.equals("Editar")) {
                 binding.bttnComprar.setText("Aceptar")
-               binding.textoNombre.isEnabled=true
-                binding.textoDescripcion.isEnabled=true
-                binding.textoPrecio.isEnabled=true
-                binding.textoUbicacion.isEnabled=true
+                binding.textoNombre.isEnabled = true
+                binding.textoDescripcion.isEnabled = true
+                binding.textoPrecio.isEnabled = true
+                binding.textoUbicacion.isEnabled = true
 
-            }else if(binding.bttnComprar.text.equals("Aceptar")){
+            } else if (binding.bttnComprar.text.equals("Aceptar")) {
                 insert_basedatos()
                 binding.bttnComprar.setText("Editar")
-                binding.textoNombre.isEnabled=false
-                binding.textoDescripcion.isEnabled=false
-                binding.textoPrecio.isEnabled=false
-                binding.textoUbicacion.isEnabled=false
+                binding.textoNombre.isEnabled = false
+                binding.textoDescripcion.isEnabled = false
+                binding.textoPrecio.isEnabled = false
+                binding.textoUbicacion.isEnabled = false
             }
         }
     }
 
     private fun comprar_producto() {
         binding.bttnComprar.setText("Comprar")
-        binding.bttnComprar.setOnClickListener{
+        binding.bttnComprar.setOnClickListener {
             nav_comprar()
         }
     }
 
     private fun cargar_datos(id: String) {
-        mFirestore.collection("anuncios").whereEqualTo("id",id)
+        mFirestore.collection("anuncios").whereEqualTo("id", id)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 querySnapshot.forEach { document ->
-                     url="${document.data["foto"]}"
-                    binding.textoNombre.setText( "${document.data["nombre"]}")
-                    binding.textoDescripcion.setText( "${document.data["descripcion"]}")
-                    binding.textoUbicacion.setText( "${document.data["ubicacion"]}")
-                    binding.textoPrecio.setText( "${document.data["precio"]}")
+                    url = "${document.data["foto"]}"
+                    binding.textoNombre.setText("${document.data["nombre"]}")
+                    binding.textoDescripcion.setText("${document.data["descripcion"]}")
+                    binding.textoUbicacion.setText("${document.data["ubicacion"]}")
+                    binding.textoPrecio.setText("${document.data["precio"]}")
                     getBitmapFromURL(url)
                 }
             }
@@ -140,20 +139,21 @@ class mostrar_anuncio : Fragment() {
 
         }
     }
+
     private fun insert_basedatos() {
         val nombre = binding.textoNombre.text.toString()
-        val ubicacion=binding.textoUbicacion.text.toString()
-        val descipcion=binding.textoDescripcion.text.toString()
-        val precio=binding.textoPrecio.text.toString()
-        val vendedor= get_email()
+        val ubicacion = binding.textoUbicacion.text.toString()
+        val descipcion = binding.textoDescripcion.text.toString()
+        val precio = binding.textoPrecio.text.toString()
+        val vendedor = get_email()
 
-            mFirestore.collection("anuncios").document(id).set(
+        mFirestore.collection("anuncios").document(id).set(
             hashMapOf("descripcion" to descipcion,
                 "nombre" to nombre,
                 "precio" to precio,
                 "ubicacion" to ubicacion,
                 "vendedor" to vendedor,
-                "foto" to  url,
+                "foto" to url,
                 "id" to id)).addOnCompleteListener(requireActivity()) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(context, "Anuncio publicado", Toast.LENGTH_SHORT).show()
@@ -163,9 +163,10 @@ class mostrar_anuncio : Fragment() {
             }
         }
     }
-    private  fun get_email(): String {
+
+    private fun get_email(): String {
         val user = Firebase.auth.currentUser
-        var email=""
+        var email = ""
         user?.let {
             email = it.email.toString()
         }

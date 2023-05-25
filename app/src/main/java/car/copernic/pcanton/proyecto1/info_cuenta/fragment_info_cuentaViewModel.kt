@@ -2,7 +2,6 @@ package car.copernic.pcanton.proyecto1.info_cuenta
 
 import android.content.ContentValues
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -45,14 +44,16 @@ class fragment_info_cuentaViewModel : ViewModel() {
                 Log.w(ContentValues.TAG, "Error getting documents $exception")
             }
     }
-    private  fun get_email(): String {
+
+    private fun get_email(): String {
         val user = Firebase.auth.currentUser
-        var email=""
+        var email = ""
         user?.let {
             email = it.email.toString()
         }
         return email
     }
+
     fun actualizarDatos(nombre: String, correo: String, direccion: String, telefono: String) {
         mFirestore.collection("user").document(correo).set(
             hashMapOf(

@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "car.copernic.pcanton.proyecto1"
-        minSdk 23
+        minSdk 29
         targetSdk 33
         versionCode 1
         versionName "1.0"
